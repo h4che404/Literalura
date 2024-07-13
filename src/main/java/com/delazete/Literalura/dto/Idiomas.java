@@ -1,6 +1,4 @@
-package com.delazete.Literalura.entity;
-
-import static java.time.chrono.JapaneseEra.values;
+package com.delazete.Literalura.dto;
 
 public enum Idiomas {
     AF("af", "Afrikáans"),
@@ -126,5 +124,9 @@ public enum Idiomas {
             }
         }
         throw new IllegalArgumentException("Ningun idioma encontrado: " + iniciales);
+    }
+    public String toString(){
+        String idioma = "Idioma:" + nombreCompleto;
+        return idioma;
     }
 }

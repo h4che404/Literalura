@@ -1,4 +1,4 @@
-package com.delazete.Literalura.entity;
+package com.delazete.Literalura.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

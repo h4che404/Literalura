@@ -1,2 +1,5 @@
-package com.delazete.Literalura.service;public interface IConvierteDatos {
+package com.delazete.Literalura.service;
+
+public interface IConvierteDatos {
+    <T> T obtenerDatos(String json, Class<T> clase);
 }
