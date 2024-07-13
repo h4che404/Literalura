@@ -19,7 +19,7 @@ public class Libro {
     private Autor autor;
     private double totalDeDescargas;
 
-    public Libro(Datos datos) {
+    public Libro() {
     }
 
     public Libro(datosLibro datosdelibro) {

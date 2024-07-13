@@ -32,7 +32,6 @@ public class Menu {
                 .map(l -> l.titulo().toUpperCase())
                 .forEach(System.out::println);
 
-        Libro libro1 = new Libro(datos);
-        repotorio.save(libro1);
+      convierteDatos.guardarLibrosEnBaseDeDatos(datos);
     }
 }
