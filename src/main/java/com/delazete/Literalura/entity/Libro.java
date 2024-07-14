@@ -6,16 +6,20 @@ import com.delazete.Literalura.dto.Idiomas;
 import jakarta.persistence.*;
 import jdk.jfr.Name;
 
+import java.util.List;
+
 @Entity
 @Table(name = "libro")
 public class Libro {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Id;
     @Column(unique = true)
-    @Name(value = "titulo")
     private String titulo;
-    private String idioma;
-    @ManyToOne
-    @JoinColumn(name = "idAutor")
+    @Enumerated(EnumType.STRING)
+    private Idiomas idioma;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "autor_id")
     private Autor autor;
     private double totalDeDescargas;
 
@@ -25,8 +29,15 @@ public class Libro {
     public Libro(datosLibro datosdelibro) {
         this.titulo = datosdelibro.titulo();
         this.totalDeDescargas = datosdelibro.totalDedescargas();
-        this.autor = (Autor) datosdelibro.autores();
         this.idioma =Idiomas.fromString(datosdelibro.Idiomas().toString());
+    }
+
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
     }
 
     public Autor getAutor() {
@@ -37,14 +48,17 @@ public class Libro {
         this.autor = autor;
     }
 
-    public String getIdioma() {
+    public void setTotalDeDescargas(double totalDeDescargas) {
+        this.totalDeDescargas = totalDeDescargas;
+    }
+
+    public Idiomas getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
+    public void setIdioma(Idiomas idioma) {
         this.idioma = idioma;
     }
-
 
     public String getTitulo() {
         return titulo;
@@ -58,16 +72,12 @@ public class Libro {
         return totalDeDescargas;
     }
 
-    public void setTotalDeDescargas(int totalDeDescargas) {
-        this.totalDeDescargas = totalDeDescargas;
-    }
 
     @Override
     public String toString() {
         String newLibro= "------- LIBRO -------\n" +
                 "Título: " + titulo + "\n" +
-                "Autor: " + autor.getNombre() + "\n" +
-                "Idioma: " + Idiomas.valueOf(idioma)+ "\n" +
+                "Idioma: " + idioma.name() + "\n" +
                 "Numero de descargas: " + totalDeDescargas + "\n";
 
         return newLibro;

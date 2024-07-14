@@ -34,27 +34,5 @@ public class ConvierteDatos implements IConvierteDatos {
             throw new RuntimeException(e);
         }
     }
-    @Transactional
-    public void guardarLibrosEnBaseDeDatos(Datos datos) {
-        for (datosLibro libroDto : datos.resultados()) {
-            Autor autor;
-            Optional<Autor> autorOptional = autorRepository.findByNombre(libroDto.autores().get(0).nombre());
 
-            if (autorOptional.isPresent()) {
-                autor = autorOptional.get();
-            } else {
-                autor = new Autor();
-                autor.setNombre(libroDto.autores().get(0).nombre());
-                autor = autorRepository.save(autor); // Guardar el autor si es nuevo
-            }
-
-            Libro libro = new Libro();
-            libro.setTitulo(libroDto.titulo());
-            libro.setAutor(autor);
-
-
-            libroRepository.save(libro);
-            }
-        }
-
-    }
+}

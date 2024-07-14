@@ -4,7 +4,6 @@ import com.delazete.Literalura.dto.datosAutor;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autor")
@@ -12,12 +11,12 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAutor;
-    @Column(unique = true)
+    @Column(unique = true, name = "name")
     private String nombre;
     private int fechaNacimiento;
     private int fechaDefuncion;
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Libro> libro;
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
+    private List<Libro> libros;
 
     public Autor() {
     }
@@ -26,13 +25,15 @@ public class Autor {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaDefuncion = fechaDefuncion;
-
     }
 
-    public Autor(datosAutor datosAutor) {
-        this.nombre = datosAutor.nombre();
-        this.fechaNacimiento = datosAutor.fechaNacimiento();
-        this.fechaDefuncion = datosAutor.fechaDefallecimiento();
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        libros.forEach(l -> l.setAutor(this));
+        this.libros = libros;
     }
 
     public int getFechaDefuncion() {
@@ -59,19 +60,6 @@ public class Autor {
         this.idAutor = idAutor;
     }
 
-    public List<Libro> getLibro() {
-        return libro;
-    }
-    public String librosAutor (List<Libro> libro) {
-        return libro.stream()
-                .map(Libro::getTitulo).collect(Collectors.joining("\n"));
-
-    }
-
-    public void setLibro(List<Libro> libro) {
-        this.libro = libro;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -83,10 +71,10 @@ public class Autor {
     @Override
     public String toString() {
         String datosAutor = "---------AUTOR---------\n" +
-                "Nombre:            " + nombre + "\n" +
+                "Nombre:" + nombre + "\n" +
                 "Fecha de nacimiento: " + fechaNacimiento + "\n" +
                 "Fecha de defuncion: " + fechaDefuncion +
-                "\nLibros publicados: \n" + librosAutor(libro)+ "\n";
+                "\nLibros publicados: \n" + "\n";
         return datosAutor;
     }
 
