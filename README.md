@@ -17,7 +17,7 @@ Este proyecto busca crear un catálogo de libros interactivo en la consola, dond
 2.  **Listar libros registrados:** Muestra todos los libros disponibles.
 3.  **Listar autores registrados:** Muestra todos los autores del catálogo.
 4.  **Listar autores vivos en un año:** Filtra autores por año de nacimiento y fallecimiento.
-5.  **Listar libros por idioma:** Filtra libros por idioma.
+5.  **Listar los 5 mejores libros:** Filtra libros por descargas.
 6.  **Salir del programa:** Cierra el catálogo.
 
 ## 🛠️ Estado del Proyecto
@@ -40,3 +40,10 @@ Si tienes alguna pregunta o sugerencia, no dudes en contactarme.
 ---
 
 **¡Gracias por tu interés en este proyecto!** 😊
+
+
+<div align="center">
+## Estadísticas del Proyecto <br>
+<img src="Captura de pantalla 2024-07-14 050404.png" width="500">
+</div>
+
